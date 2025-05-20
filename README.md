@@ -12,3 +12,13 @@
 ## Run the TS file
 
 - tsc fileName.ts
+
+## Type Alias
+
+- To basically create custom types
+
+- type User
+
+## Type vs Interface
+
+In TypeScript, type and interface are very similar — both let you define the shape of objects, and in many cases, they can be used interchangeably. However, there are some nuanced differences, especially when it comes to extending, merging, and using with unions or tuples.
