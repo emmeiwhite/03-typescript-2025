@@ -8,3 +8,7 @@
 ## Installation Guide
 
 - npm i -g typescript
+
+## Run the TS file
+
+- tsc fileName.ts
