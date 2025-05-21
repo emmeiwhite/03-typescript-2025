@@ -1,36 +1,41 @@
-/** GENERICS EXAMPLE:
- *  A function which takes array of objects of certain contract (types) and returns on object of that type.
- */
-interface HasAge {
+// Generics in action: Assume we have two types of objects both having a common property age. Let's see how GENERICS helps to make sure one function handles both types of Objects.
+
+interface Age {
   age: number
 }
 
-function getOldest(people: HasAge[]): HasAge {
-  // DSA: Find oldest in an array. Sort it and return first element
-
-  return people.sort((a, b) => {
-    return b.age - a.age
-  })[0]
+// A fxn takes array of objects of type Age and returns the object with smallest age
+function getOldestPerson(people: Age[]): Age {
+  return people.sort((a, b) => b.age - a.age)[0]
 }
 
-const people: HasAge[] = [{ age: 30 }, { age: 33 }, { age: 25 }]
+let oldestPerson1 = getOldestPerson([{ age: 10 }, { age: 34 }, { age: 39 }])
+console.log(oldestPerson1)
 
-getOldest(people)
-
-interface Player {
+interface Person {
   name: string
   age: number
 }
 
-let players: Player[] = [
-  { name: 'john', age: 33 },
-  { name: 'mike', age: 20 },
-  { name: 'harry', age: 43 }
+let persons = [
+  { name: 'john', age: 34 },
+  { name: 'kiki', age: 23 },
+  { name: 'tuhu', age: 43 }
 ]
 
-getOldest(players) // The getOldest function will not throw any warning, since age property is present in Player interface but we cannot access name property with this approach, For example if we try to do getOldest(players). (we only get auto-suggestion for age )
+// ASSERTION: Not recommended
+const oldestPerson2 = getOldestPerson(persons) as Person
 
-// We can do ASSERTION here but that is not considered a good practice
+console.log(oldestPerson2)
 
-const player2 = getOldest(players) as Player
-player2.name // we can access the name now with assertion
+// So what do we do actually, We use GENERICS
+
+function getYoungest<T extends Age>(people: T[]): T {
+  return people.sort((a, b) => {
+    return a.age - b.age
+  })[0]
+}
+
+const young1 = getYoungest(persons)
+
+console.log(young1)
