@@ -15,7 +15,7 @@
 
 ## Type Alias
 
-- To basically create custom types
+- To basically create custom types - defines the shape of objects
 
 - type User
 
